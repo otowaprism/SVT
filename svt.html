@@ -56,6 +56,462 @@
 
         /* 大 Logo 設定 */
         .menu-logo-img {
+            height: 55px; /* 再稍微放大一些 */
+            width: auto;
+            object-fit: contain;
+            margin-bottom: 5px; 
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle:hover .menu-logo-img {
+            transform: scale(1.05); 
+        }
+
+        .menu-text {
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: white;
+        }
+
+        /* 頂部文字標題 */
+        .logo {
+            display: flex;
+            flex-direction: column;
+            text-align: right; 
+        }
+
+        .logo-main {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            line-height: 1.1;
+        }
+
+        .logo-sub {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            line-height: 1.1;
+            margin-top: 4px; 
+            color: rgba(255, 255, 255, 0.9); 
+        }
+
+        /* 右側導覽連結 (電腦版) */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links li a {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: #F7CAC9;
+        }
+
+        /* ================= 側邊彈出選單 (Side Menu) ================= */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 280px; 
+            height: 100vh;
+            background-color: rgba(145, 168, 208, 0.98); 
+            z-index: 1050;
+            transition: left 0.4s ease;
+            padding-top: 130px; 
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .side-menu.active {
+            left: 0;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0 30px;
+        }
+
+        .side-menu ul li {
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .side-menu ul li a {
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            display: block;
+            padding: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .side-menu ul li a:hover {
+            padding-left: 15px;
+            color: #F7CAC9;
+        }
+
+        /* 選單開啟時的背景遮罩 */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.4);
+            z-index: 1040;
+            display: none;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+        /* ================= 橫幅視覺區 (Hero Section) ================= */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            margin-top: 0;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -2;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: -1;
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 50px;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        /* 暫停/播放 按鈕設定 (純圓形圖示) */
+        .play-pause-btn {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .play-pause-btn:hover {
+            background-color: white;
+            color: #333;
+        }
+
+        .hero:hover .play-pause-btn {
+            opacity: 1;
+        }
+
+        /* ================= 內容區塊 (Sections) ================= */
+        section {
+            padding: 80px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .news-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .news-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-date {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .news-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* ================= 頁尾 (Footer) ================= */
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #aaa;
+        }
+
+        /* ================= 手機版響應式 ================= */
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 20px;
+                flex-direction: row; 
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .menu-logo-img {
+                height: 40px; 
+            }
+
+            .nav-links {
+                display: none; 
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            section {
+                padding: 50px 20px;
+            }
+            .play-pause-btn {
+                opacity: 0.8; 
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <nav class="side-menu" id="sideMenu">
+        <ul>
+            <li><a href="news.html">News</a></li>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#discography">Discography</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#fanclub">Fanclub</a></li>
+        </ul>
+    </nav>
+
+    <header id="navbar">
+        <button class="menu-toggle" id="menuToggle">
+            <img src="logo.png" alt="Menu" class="menu-logo-img">
+            <span class="menu-text">MENU</span>
+        </button>
+
+        <div class="logo">
+            <span class="logo-main">SEVENTEEN</span>
+            <span class="logo-sub">RIGHT HERE</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="news.html">News</a></li>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#discography">Discography</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#fanclub">Fanclub</a></li>
+        </ul>
+    </header>
+
+    <div class="hero">
+        <video id="bg-video" class="hero-video" autoplay loop muted playsinline>
+            <source src="godofmusic.mp4" type="video/mp4">
+            您的瀏覽器不支援 HTML5 影片。
+        </video>
+        
+        <div class="hero-overlay"></div>
+        
+        <button id="play-pause-btn" class="play-pause-btn">⏸</button>
+
+        <div class="hero-content">
+            <h1>NEW SINGLE RELEASE</h1>
+            <p>2026.06.01 OUT NOW</p>
+        </div>
+    </div>
+
+    <section id="news">
+        <h2 class="section-title">News</h2>
+        <div class="news-grid">
+            <div class="news-item">
+                <span class="news-date">2026.05.29</span>
+                <div class="news-title">巡迴演唱會最終站售票資訊公開</div>
+            </div>
+            <div class="news-item">
+                <span class="news-date">2026.05.25</span>
+                <div class="news-title">官方周邊商品線上商店更新</div>
+            </div>
+            <div class="news-item">
+                <span class="news-date">2026.05.20</span>
+                <div class="news-title">新單曲音樂錄影帶 (MV) 首播預告</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="profile">
+        <h2 class="section-title">Profile</h2>
+        <p style="text-align: center; max-width: 600px; margin: 0 auto; color: #555;">
+            在這裡放入藝人或團體的介紹文字。
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 ARTIST OFFICIAL SITE. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                header.style.padding = '8px 50px';
+            } else {
+                header.style.padding = '15px 50px';
+            }
+        });
+
+        const video = document.getElementById('bg-video');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        playPauseBtn.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+                playPauseBtn.innerHTML = '⏸';
+            } else {
+                video.pause();
+                playPauseBtn.innerHTML = '▶';
+            }
+        });
+
+        // 簡化且極度穩定的選單開關邏輯
+        const menuToggle = document.getElementById('menuToggle');
+        const sideMenu = document.getElementById('sideMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const menuText = menuToggle.querySelector('.menu-text');
+
+        function openMenu() {
+            sideMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            menuText.innerHTML = 'CLOSE';
+        }
+
+        function closeMenu() {
+            sideMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            menuText.innerHTML = 'MENU';
+        }
+
+        menuToggle.addEventListener('click', () => {
+            if (sideMenu.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        menuOverlay.addEventListener('click', closeMenu);
+
+        // 點擊側邊選單非 news.html 的錨點才關閉選單
+        const sideMenuLinks = sideMenu.querySelectorAll('a');
+        sideMenuLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.getAttribute('href').startsWith('#')) {
+                    closeMenu();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+            background-color: #91A8D0;
+            color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        /* 左側選單按鈕 (Logo 圖片 + MENU 文字) */
+        .menu-toggle {
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            z-index: 1100; 
+            padding: 5px;
+        }
+
+        /* 大 Logo 設定 */
+        .menu-logo-img {
             height: 45px; 
             width: auto;
             object-fit: contain;
