@@ -3,37 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News - SEVENTEEN RIGHT HERE</title>
+    <title>NEWS | SEVENTEEN Japan official site 仿作</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
+        * {
             margin: 0;
-            padding: 40px 20px;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Helvetica Neue", Arial, sans-serif;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+
+        body {
+            background-color: #ffffff;
+            color: #111111;
         }
-        h1 { color: #91A8D0; }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #333;
+
+        a {
             text-decoration: none;
+            color: inherit;
+        }
+
+        /* ================= 頂部與官網相同風格 ================= */
+        .news-header {
+            text-align: center;
+            padding: 60px 20px 20px 20px;
+            background-color: #ffffff;
+        }
+
+        .back-home {
+            display: inline-block;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .back-home:hover {
+            color: #91A8D0;
+        }
+
+        .news-header h1 {
+            font-size: 36px;
             font-weight: bold;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+        }
+
+        /* ================= 官網橫向分類標籤欄 ================= */
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            border-bottom: 1px solid #e0e0e0;
+            max-width: 1000px;
+            margin: 0 auto 40px auto;
+            padding-bottom: 0px;
+            overflow-x: auto; /* 手機版防爆欄 */
+            white-space: nowrap;
+        }
+
+        .category-tabs li {
+            padding: 10px 25px;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            color: #999999;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        /* 預設選中「全部」的樣式（改為寧靜藍） */
+        .category-tabs li.active {
+            color: #111111;
+            border-bottom: 3px solid #91A8D0; 
+        }
+
+        .category-tabs li:hover {
+            color: #91A8D0;
+        }
+
+        /* ================= 官網極簡清單排版 ================= */
+        .news-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px 100px 20px;
+        }
+
+        /* 每一條新聞的簡約外框 */
+        .news-row {
+            display: flex;
+            align-items: center;
+            padding: 25px 10px;
+            border-bottom: 1px solid #eeeeee;
+            transition: background-color 0.3s ease;
+        }
+
+        .news-row:hover {
+            background-color: #fcfcfc; /* 滑鼠懸浮微光 */
+        }
+
+        /* 日期區塊 */
+        .post-date {
+            font-size: 14px;
+            color: #111111;
+            font-weight: 500;
+            width: 120px;
+            flex-shrink: 0;
+            letter-spacing: 0.5px;
+        }
+
+        /* 分類膠囊標籤 */
+        .post-badge {
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 4px 12px;
+            background-color: #f2f2f2;
+            color: #666666;
+            text-transform: uppercase;
+            margin-right: 30px;
+            flex-shrink: 0;
+            border-radius: 2px;
+        }
+
+        /* 標題與箭頭 */
+        .post-title-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .post-title {
+            font-size: 15px;
+            color: #222222;
+            font-weight: 400;
+            line-height: 1.5;
+            padding-right: 20px;
+            transition: color 0.3s;
+        }
+
+        .news-row:hover .post-title {
+            color: #91A8D0; /* 懸浮時文字變色 */
+        }
+
+        /* 右側優雅小箭頭 */
+        .post-arrow {
+            font-size: 14px;
+            color: #cccccc;
+            transition: transform 0.3s;
+        }
+
+        .news-row:hover .post-arrow {
+            transform: translateX(5px);
+            color: #91A8D0;
+        }
+
+        /* ================= 手機版優化排版 ================= */
+        @media (max-width: 768px) {
+            .news-header h1 {
+                font-size: 28px;
+            }
+            .news-row {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px 5px;
+            }
+            .post-date {
+                margin-bottom: 8px;
+            }
+            .post-badge {
+                margin-bottom: 12px;
+            }
+            .post-title {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="svt.html" class="back-btn">← 返回首頁</a>
-        <h1>Latest News</h1>
-        <hr>
+
+    <div class="news-header">
+        <a href="svt.html" class="back-home">← back to official site</a>
+        <h1>NEWS</h1>
+    </div>
+
+    <ul class="category-tabs">
+        <li class="active">すべて (全部)</li>
+        <li>LIVE/EVENT</li>
+        <li>RELEASE</li>
+        <li>MEDIA</li>
+        <li>CARAT</li>
+        <li>OTHER</li>
+    </ul>
+
+    <div class="news-container">
+        
+        <a href="#" class="news-row">
+            <div class="post-date">2026.05.28</div>
+            <div class="post-badge" style="background-color: #e3ecf5; color: #5a7b9c;">OTHER</div>
+            <div class="post-title-wrapper">
+                <div class="post-title">『SEVENTEEN 2026 JAPAN FANMEETING 'YAKUSOKU'』CAPSULE TOY 預售開始通知</div>
+                <div class="post-arrow">→</div>
+            </div>
+        </a>
+
+        <a href="#" class="news-row">
+            <div class="post-badge" style="background-color: #f7e6e6; color: #ad5c5c; display: none;"></div> <div class="post-date">2026.05.22</div>
+            <div class="post-badge">MERCHANDISE</div>
+            <div class="post-title-wrapper">
+                <div class="post-title">Ice Cream with MINITEEN OFFICIAL MERCHANDISE 官方週邊商品預購決定！</div>
+                <div class="post-arrow">→</div>
+            </div>
+        </a>
+
+        <a href="#" class="news-row">
+            <div class="post-date">2026.05.15</div>
+            <div class="post-badge" style="background-color: #e2f3e4; color: #4e8c56;">LIVE/EVENT</div>
+            <div class="post-title-wrapper">
+                <div class="post-title">『SEVENTEEN 2026 JAPAN FANMEETING 'YAKUSOKU'』大阪公演 特典領取站預約方法說明</div>
+                <div class="post-arrow">→</div>
+            </div>
+        </a>
+
+        <a href="#" class="news-row">
+            <div class="post-date">2026.05.11</div>
+            <div class="post-badge" style="background-color: #fff3cd; color: #856404;">重要</div>
+            <div class="post-title-wrapper">
+                <div class="post-title">【重要】官方應援棒 VER.3 藍牙中控演出配對及當日座位註冊設定指南</div>
+                <div class="post-arrow">→</div>
+            </div>
+        </a>
+
+    </div>
+
+</body>
+</html>
         <p>這裡可以開始放入您所有的詳細新聞內容...</p>
     </div>
 </body>
