@@ -17,7 +17,7 @@
             background-color: #f8f8f8;
             color: #333;
             line-height: 1.6;
-            overflow-x: hidden; /* 防止側邊選單造成橫向捲動 */
+            overflow-x: hidden;
         }
 
         a {
@@ -30,9 +30,9 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 10px 50px; /* 稍微縮小上下 padding 以適應圖片 */
+            padding: 10px 50px;
             display: flex;
-            justify-content: space-between; /* 左右對齊 */
+            justify-content: space-between;
             align-items: center;
             background-color: #91A8D0;
             color: white;
@@ -41,31 +41,54 @@
             transition: all 0.3s ease;
         }
 
-        /* 左側選單按鈕 (漢堡) */
+        /* 左側選單按鈕 (包含 Logo 圖片與 MENU 文字) */
         .menu-toggle {
-            display: none; /* 電腦版預設隱藏 */
+            display: none; /* 電腦版預設隱藏，使用右側文字導覽 */
             background: none;
             border: none;
             color: white;
-            font-size: 24px;
             cursor: pointer;
-            z-index: 1100; /* 高於側邊選單 */
+            z-index: 1100;
         }
 
-        /* 標題區塊 - 改為圖片 Logo */
+        .menu-logo-img {
+            height: 22px; /* 控制 Logo 圖片的高度，可根據您的圖案微調 */
+            width: auto;
+            object-fit: contain;
+            margin-bottom: 3px; /* 圖片與文字的間距 */
+        }
+
+        .menu-text {
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* 標題區塊 - 上下排列設計 */
         .logo {
             display: flex;
-            align-items: center;
-            height: 40px; /* 設定一個固定高度 */
+            flex-direction: column;
+            text-align: left;
         }
 
-        .logo-img {
-            height: 100%; /* 圖片高度填滿 logo 區塊 */
-            width: auto;  /* 寬度自動維持比例 */
-            object-fit: contain;
+        .logo-main {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            line-height: 1.1;
         }
 
-        /* 右側導覽連結 */
+        .logo-sub {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            line-height: 1.1;
+            margin-top: 4px; 
+            color: rgba(255, 255, 255, 0.9); 
+        }
+
+        /* 右側導覽連結 (電腦版) */
         .nav-links {
             list-style: none;
             display: flex;
@@ -78,29 +101,28 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: color 0.3s;
-            position: relative;
         }
 
         .nav-links li a:hover {
-            color: #F7CAC9; /* 懸浮時變為玫瑰粉色 */
+            color: #F7CAC9;
         }
 
         /* ================= 側邊彈出選單 (Side Menu) ================= */
         .side-menu {
             position: fixed;
             top: 0;
-            left: -100%; /* 預設在螢幕左側外面 */
+            left: -100%;
             width: 250px;
             height: 100vh;
-            background-color: rgba(145, 168, 208, 0.95); /* 寧靜藍半透明背景 */
+            background-color: rgba(145, 168, 208, 0.95);
             z-index: 1050;
-            transition: left 0.4s ease; /* 滑出動畫 */
-            padding-top: 80px; /* 留出空間給頂部導覽列 */
+            transition: left 0.4s ease;
+            padding-top: 80px;
             box-shadow: 2px 0 10px rgba(0,0,0,0.1);
         }
 
         .side-menu.active {
-            left: 0; /* 滑入螢幕 */
+            left: 0;
         }
 
         .side-menu ul {
@@ -137,11 +159,11 @@
             height: 100vh;
             background-color: rgba(0,0,0,0.5);
             z-index: 1040;
-            display: none; /* 預設隱藏 */
+            display: none;
         }
 
         .menu-overlay.active {
-            display: block; /* 激活時顯示 */
+            display: block;
         }
 
         /* ================= 橫幅視覺區 (Hero Section) ================= */
@@ -290,25 +312,25 @@
         @media (max-width: 768px) {
             header {
                 padding: 10px 20px;
-                /* 不再使用 column，改回 flex 左右排列 */
                 flex-direction: row; 
                 justify-content: space-between;
                 align-items: center;
             }
 
             .menu-toggle {
-                display: block; /* 手機版顯示漢堡選單 */
-                order: 1; /* 排在最左邊 */
+                /* 手機版顯示左上角 Logo+MENU 按鈕 */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
 
             .logo {
-                text-align: center;
-                order: 2; /* 排在中間 */
-                height: 30px; /* 手機版 Logo 稍微變小 */
+                /* 手機版文字標題靠右對齊 */
+                text-align: right;
             }
 
             .nav-links {
-                display: none; /* 手機版隱藏原本的導覽連結 */
+                display: none; 
             }
 
             .hero-content h1 {
@@ -340,10 +362,14 @@
     </nav>
 
     <header id="navbar">
-        <button class="menu-toggle" id="menuToggle">☰</button>
+        <div class="menu-toggle" id="menuToggle">
+            <img src="logo.png" alt="Menu" class="menu-logo-img">
+            <span class="menu-text">MENU</span>
+        </div>
 
         <div class="logo">
-            <img src="logo.png" alt="SEVENTEEN Logo" class="logo-img">
+            <span class="logo-main">SEVENTEEN</span>
+            <span class="logo-sub">RIGHT HERE</span>
         </div>
 
         <ul class="nav-links">
@@ -429,31 +455,20 @@
         const menuToggle = document.getElementById('menuToggle');
         const sideMenu = document.getElementById('sideMenu');
         const menuOverlay = document.getElementById('menuOverlay');
+        const menuText = menuToggle.querySelector('.menu-text');
 
         // 開啟/關閉選單的函式
         function toggleMenu() {
             sideMenu.classList.toggle('active');
             menuOverlay.classList.toggle('active');
-            // 點擊漢堡按鈕時切換圖示 (☰ 和 ✕)
+            
+            // 選單展開時，下方的字變成 CLOSE
             if (sideMenu.classList.contains('active')) {
-                menuToggle.innerHTML = '✕';
+                menuText.innerHTML = 'CLOSE';
             } else {
-                menuToggle.innerHTML = '☰';
+                menuText.innerHTML = 'MENU';
             }
         }
 
-        // 點擊漢堡按鈕
+        // 點擊左上角按鈕
         menuToggle.addEventListener('click', toggleMenu);
-
-        // 點擊背景遮罩
-        menuOverlay.addEventListener('click', toggleMenu);
-
-        // 點擊側邊選單內的連結後，自動關閉選單
-        const sideMenuLinks = sideMenu.querySelectorAll('a');
-        sideMenuLinks.forEach(link => {
-            link.addEventListener('click', toggleMenu);
-        });
-    </script>
-
-</body>
-</html>
